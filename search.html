@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main>
+        <section id="search">
+            <form action="">
+                <input type="text">
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+
+
+        <section id="searchResult">
+            <ul id="paginated-list"></ul>
+            <nav class="pagination-container">
+                <button class="pagination-button" id="prev-button">&lt;</button>
+
+                <div id="pagination-numbers"> </div>
+
+                <button class="pagination-button" id="next-button">&gt;</button>
+            </nav>
+        </section>
+    </main>
+    <script src="search.js"></script>
+</body>
+
+</html>
