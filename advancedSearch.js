@@ -358,3 +358,8 @@ document.querySelector('ul').addEventListener('click', e => {
     window.location = 'details.html'
   }
 })
+
+//----------------- GO TO INDEX.HTML  ------------------------------
+document.querySelector('#backToIndexPage').addEventListener('click', e => {
+  window.location = 'index.html'
+})

@@ -40,3 +40,7 @@ document
 document
   .getElementById('searchBeerButton')
   .addEventListener('click', () => (window.location = 'search.html'))
+
+document
+  .getElementById('advancedSearchBeerButton')
+  .addEventListener('click', () => (window.location = 'advancedSearch.html'))
