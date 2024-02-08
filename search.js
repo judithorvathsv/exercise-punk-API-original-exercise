@@ -1,4 +1,3 @@
-
 let storedBeers = localStorage.getItem('beersStorage')
 let beers = JSON.parse(storedBeers)
 
@@ -168,6 +167,12 @@ document.querySelector('ul').addEventListener('click', e => {
   }
 })
 
+//----------------- GO TO ADVANCED SEARCH.HTML  ------------------------------
 document.querySelector('#advancedSearchButton').addEventListener('click', e => {
   window.location = 'advancedSearch.html'
+})
+
+//----------------- GO TO INDEX.HTML  ------------------------------
+document.querySelector('#backToIndexPage').addEventListener('click', e => {
+  window.location = 'index.html'
 })

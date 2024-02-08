@@ -17,18 +17,27 @@ allBeers()
 
 let storedBeers = localStorage.getItem('beersStorage')
 let beers = JSON.parse(storedBeers)
-console.log(beers)
 
 function getBeer () {
   let randomId = Math.floor(Math.random() * 25)
   let randomBeer = beers.find(b => b.id == randomId)
   document.getElementById('beerImage').src = randomBeer.image_url
   document.getElementById('beerName').innerText = randomBeer.name
-  console.log(randomBeer.id)
   localStorage.setItem('beerId', randomBeer.id)
 }
 
-window.onload = () => getBeer()
+window.onload = () => {
+  let beerId = localStorage.getItem('beerId')
+
+  if (typeof beerId == 'undefined' || beerId == null) {
+    getBeer()
+  } else {
+    console.log(beerId)
+    let randomBeer = beers.find(b => b.id == beerId)
+    document.getElementById('beerImage').src = randomBeer.image_url
+    document.getElementById('beerName').innerText = randomBeer.name
+  }
+}
 document
   .getElementById('randomButton')
   .addEventListener('click', () => getBeer())

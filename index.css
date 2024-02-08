@@ -2,6 +2,10 @@
   width: 5%;
 }
 
+#detailButton {
+  cursor: pointer;
+}
+
 #beerImageDetailPage {
   width: 5%;
 }
@@ -49,4 +53,3 @@ main {
   color: #fff;
   background-color: #0085b6;
 }
-

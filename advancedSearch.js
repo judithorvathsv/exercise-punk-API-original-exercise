@@ -1,6 +1,5 @@
 /*  
 - The search form should contain relevant validation.
-- Cache the results. If you revisit a beer, you shouldn't need to make another request to the API.
 --> */
 
 let storedBeers = localStorage.getItem('beersStorage')
