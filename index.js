@@ -17,6 +17,7 @@ allBeers()
 
 let storedBeers = localStorage.getItem('beersStorage')
 let beers = JSON.parse(storedBeers)
+console.log(beers)
 
 function getBeer () {
   let randomId = Math.floor(Math.random() * 25)

@@ -9,6 +9,7 @@ function showBeer () {
 
   let beer = beers.find(b => b.id == beerId)
 
+  document.getElementById('title').innerText = beer.name
   document.getElementById('description').innerText = beer.description
   document.getElementById('beerImageDetailPage').src = beer.image_url
   document.getElementById(
@@ -50,7 +51,7 @@ function showBeer () {
       li.style.listStyleType = 'none'
       document.getElementById('ingredientsUl').appendChild(li)
 
-      if (item[0] !== ' ') {      
+      if (item[0] !== ' ') {
         li.style.listStyleType = 'none'
         li.style.fontWeight = 'bold'
         li.classList.add('ingredients')
@@ -66,3 +67,7 @@ function showBeer () {
 
   document.getElementById('brewersTips').innerText = beer.brewers_tips
 }
+
+document.querySelector('#backToIndexPage').addEventListener('click', e => {
+  window.location = 'index.html'
+})

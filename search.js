@@ -1,27 +1,3 @@
-/*
-### Bonus feature
-#### Search Page++
-- The user should be able to to advanced searches.
-- The use should be able to search on one of these parameters or a kombination of them:
-  - Name
-  - Hops
-  - Malt
-  - Brewes Before & Brewed After
-  - ABV greater than & ABV less than
-- The search form should contain relevant validation.
-- Cache the results. If you revisit a beer, you shouldn't need to make another request to the API.
-
-/*   const searchedName2 = 'Buzz'
-  const searchedName3 = 'Trashy Blonde'
-  const searchedName4 = 'Storm' */
-
-/*   function getKeyByValue (object, value) {
-    for (let prop in object) {
-      if (object.hasOwnProperty(value)) {
-        if (object[prop] === searchedName) return prop
-      }
-    }
-  } */
 
 let storedBeers = localStorage.getItem('beersStorage')
 let beers = JSON.parse(storedBeers)
@@ -185,10 +161,13 @@ const setCurrentPage = pageNum => {
 
 //----------------- GO TO DETAILS.HTML  ------------------------------
 document.querySelector('ul').addEventListener('click', e => {
-  console.log(e.target.innerText)
   if (e.target.innerText !== null) {
     let searchedBeer = beers.find(b => b.name == e.target.innerText)
     localStorage.setItem('beerId', searchedBeer.id)
     window.location = 'details.html'
   }
+})
+
+document.querySelector('#advancedSearchButton').addEventListener('click', e => {
+  window.location = 'advancedSearch.html'
 })
