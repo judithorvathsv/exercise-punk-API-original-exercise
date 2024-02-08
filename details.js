@@ -1,4 +1,10 @@
 window.onload = () => {
+  /*  let background = localStorage.getItem('randomColor')
+  console.log(background)
+  document.querySelector('main').style.backgroundColor = background
+  let color = invertColor(background)
+  document.querySelector('main').style.color = color */
+
   showBeer()
 }
 
@@ -14,10 +20,12 @@ function showBeer () {
   document.getElementById('beerImageDetailPage').src = beer.image_url
   document.getElementById(
     'alcoholVolume'
-  ).innerHTML = `<h3>Alcohol by volume:</h3> ${beer.abv} %`
+  ).innerHTML = `<h3>Alcohol by volume:<span> ${beer.abv} %</span>
+</h3>`
   document.getElementById(
     'volume'
-  ).innerHTML = `<h3>Volume:</h3> ${beer.volume.value} liter`
+  ).innerHTML = `<h3>Volume:<span> ${beer.volume.value} liter</span>
+</h3>`
 
   //get ingredients items as array
   let thisInfo = []
@@ -71,3 +79,28 @@ function showBeer () {
 document.querySelector('#backToIndexPage').addEventListener('click', e => {
   window.location = 'index.html'
 })
+
+/* function invertColor (hex) {
+  if (hex.indexOf('#') === 0) {
+    hex = hex.slice(1)
+  }
+
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]
+  }
+  if (hex.length !== 6) {
+    throw new Error('Invalid HEX color.')
+  }
+
+  var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
+    g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
+    b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16)
+
+  return '#' + padZero(r) + padZero(g) + padZero(b)
+}
+
+function padZero (str, len) {
+  len = len || 2
+  var zeros = new Array(len).join('0')
+  return (zeros + str).slice(-len)
+} */

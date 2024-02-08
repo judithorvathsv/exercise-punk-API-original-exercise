@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Search</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="advancedSearch.css">
 </head>
 
 <body>
@@ -13,39 +13,48 @@
 
         <section id="search">
             <form action="">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name">
+                <fieldset>
+                    <legend> Advanced search</legend>
+                    <div id="nameMaltHopDiv">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name">
 
-                <label for="hops">Hops</label>
-                <input type="text" name="hops" id="hops">
+                        <label for="hops">Hops</label>
+                        <input type="text" name="hops" id="hops">
 
-                <label for="malt">Malt</label>
-                <input type="text" name="malt" id="malt">
+                        <label for="malt">Malt</label>
+                        <input type="text" name="malt" id="malt">
+                    </div>
+                    <div id="brewwersDiv">
+                        <label for="brewersFrom">Brewers From</label>
+                        <input type="date" name="brewersFrom" id="brewersFrom">
+                        <label for="brewersTo">Brewers To</label>
+                        <input type="date" name="brewersTo" id="brewersTo">
+                    </div>
+                    <div id="abvDiv">
 
-                <label for="brewersFrom">Brewers From</label>
-                <input type="date" name="brewersFrom" id="brewersFrom">
-                <label for="brewersTo">Brewers To</label>
-                <input type="date" name="brewersTo" id="brewersTo">
-
-                <label for="abvGreaterThan">ABV greater than</label>
-                <input type="number" name="abvGreaterThan" id="abvGreaterThan">
-                <label for="abvLessThan">ABV less than</label>
-                <input type="number" name="abvLessThan" id="abvLessThan">
-                <button type="submit">Search</button>
+                        <label for="abvGreaterThan">Alcohol by volume greater than</label>
+                        <input type="number" name="abvGreaterThan" id="abvGreaterThan" min="0" max="100">
+                        <label for="abvLessThan">Alcohol by volume less than</label>
+                        <input type="number" name="abvLessThan" id="abvLessThan" min="0" max="100">
+                    </div>
+                    <button type="submit" id="submitButton">Search</button>
+                </fieldset>
             </form>
         </section>
 
         <section id="searchResult">
             <ul id="paginated-list"></ul>
             <nav class="pagination-container">
-                <button class="pagination-button" id="prev-button">&lt;</button>
-                <div id="pagination-numbers"> </div>
-                <button class="pagination-button" id="next-button">&gt;</button>
+                <div id="navButtonsDiv">
+                    <button class="pagination-button" id="prev-button">&lt;</button>
+                    <div id="pagination-numbers"> </div>
+                    <button class="pagination-button" id="next-button">&gt;</button>
+                </div>
+                <div id="navigationToOtherPagesDiv">
+                    <button id="backToIndexPage">Back to main page</button>
+                </div>
             </nav>
-        </section>
-
-        <section>
-            <button id="backToIndexPage">Back to main page</button>
         </section>
     </main>
     <script src="advancedSearch.js"></script>

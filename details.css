@@ -1,0 +1,302 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gowun Batang", serif;
+  font-size: 1rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  align-items: center;
+}
+
+#title {
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+#description {
+  padding-bottom: 1rem;
+}
+
+p {
+  max-width: 50vw;
+}
+
+#beerImageDetailPage {
+  width: 100px;
+  padding-bottom: 2rem;
+}
+
+#volume {
+  padding-bottom: 1rem;
+}
+
+#firstHr,
+#secondHr {
+  display: block;
+  margin: 0 auto;
+  height: 5px;
+  width: 40vw;
+  border: none;
+  border-radius: 3px;
+  border-left: 15px solid #f00000;
+  border-right: 15px solid #300000;
+  animation: KITTAnim 1s infinite ease-in-out alternate;
+  margin-bottom: 1rem;
+}
+
+#firstHr:before,
+#secondHr:before {
+  content: " ";
+  display: inline-block;
+  width: 15px;
+  height: 10px;
+  border-left: 15px solid #c00000;
+  border-right: 15px solid #600000;
+  animation: KITTAnimBefore 1s infinite ease-in-out alternate;
+}
+
+#firstHr:after,
+#secondHr:after {
+  content: " ";
+  display: inline-block;
+  width: 15px;
+  height: 10px;
+  border-left: 15px solid #300000;
+  background-color: #300000;
+  border-right: 15px solid #300000;
+  animation: KITTAnimAfter 1s infinite ease-in-out alternate;
+}
+
+hr:nth-child(even) {
+  animation: KARRAnim 1s infinite ease-in-out alternate;
+}
+
+hr:nth-child(even):after {
+  animation: KARRAnimAfter 1s infinite ease-in-out alternate;
+}
+
+hr:nth-child(even):before {
+  animation: KARRAnimBefore 1s infinite ease-in-out alternate;
+}
+
+@keyframes KITTAnim {
+  0% {
+    background-color: #300000;
+    border-left: 15px solid #f00000;
+    border-right: 15px solid #300000;
+  }
+  10% {
+    background-color: #300000;
+    border-left: 15px solid #f00000;
+    border-right: 15px solid #300000;
+  }
+  20% {
+    background-color: #300000;
+    border-left: 15px solid #c00000;
+    border-right: 15px solid #300000;
+  }
+  30% {
+    background-color: #300000;
+    border-left: 15px solid #a00000;
+    border-right: 15px solid #300000;
+  }
+  40% {
+    background-color: #300000;
+    border-left: 15px solid #600000;
+    border-right: 15px solid #300000;
+  }
+  50% {
+    background-color: #600000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #300000;
+  }
+  60% {
+    background-color: #a00000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #600000;
+  }
+  70% {
+    background-color: #c00000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #a00000;
+  }
+  80% {
+    background-color: #f00000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #c00000;
+  }
+  90% {
+    background-color: #c00000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #f00000;
+  }
+  100% {
+    background-color: #c00000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #f00000;
+  }
+}
+
+@keyframes KITTAnimBefore {
+  0% {
+    background-color: #a00000;
+    border-left: 15px solid #c00000;
+    border-right: 15px solid #600000;
+  }
+  10% {
+    background-color: #a00000;
+    border-left: 15px solid #c00000;
+    border-right: 15px solid #600000;
+  }
+  20% {
+    background-color: #c00000;
+    border-left: 15px solid #f00000;
+    border-right: 15px solid #a00000;
+  }
+  30% {
+    background-color: #f00000;
+    border-left: 15px solid #c00000;
+    border-right: 15px solid #c00000;
+  }
+  40% {
+    background-color: #c00000;
+    border-left: 15px solid #a00000;
+    border-right: 15px solid #f00000;
+  }
+  50% {
+    background-color: #a00000;
+    border-left: 15px solid #600000;
+    border-right: 15px solid #c00000;
+  }
+  60% {
+    background-color: #600000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #a00000;
+  }
+  70% {
+    background-color: #300000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #600000;
+  }
+  80% {
+    background-color: #300000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #300000;
+  }
+  90% {
+    background-color: #300000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #300000;
+  }
+  100% {
+    background-color: #300000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #300000;
+  }
+}
+
+@keyframes KITTAnimAfter {
+  0% {
+    background-color: #300000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #300000;
+  }
+  10% {
+    background-color: #300000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #300000;
+  }
+  20% {
+    background-color: #300000;
+    border-left: 15px solid #600000;
+    border-right: 15px solid #300000;
+  }
+  30% {
+    background-color: #600000;
+    border-left: 15px solid #a00000;
+    border-right: 15px solid #300000;
+  }
+  40% {
+    background-color: #a00000;
+    border-left: 15px solid #c00000;
+    border-right: 15px solid #600000;
+  }
+  50% {
+    background-color: #c00000;
+    border-left: 15px solid #f00000;
+    border-right: 15px solid #a00000;
+  }
+  60% {
+    background-color: #f00000;
+    border-left: 15px solid #c00000;
+    border-right: 15px solid #c00000;
+  }
+  70% {
+    background-color: #c00000;
+    border-left: 15px solid #a00000;
+    border-right: 15px solid #f00000;
+  }
+  80% {
+    background-color: #a00000;
+    border-left: 15px solid #600000;
+    border-right: 15px solid #c00000;
+  }
+  90% {
+    background-color: #600000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #a00000;
+  }
+  100% {
+    background-color: #600000;
+    border-left: 15px solid #300000;
+    border-right: 15px solid #a00000;
+  }
+}
+
+.ingredients:before {
+  content: "🍺";
+}
+
+#ingredientsTitle #foodPairingTitle {
+  padding-top: 2rem;
+}
+
+#ingredientsUl,
+#foodPairingUl,
+#brewersTips {
+  font-size: 1.2rem;
+  padding-bottom: 3rem;
+}
+
+#goUpButton {
+  text-align: center;
+}
+
+#backToIndexPage,
+#goUpButton {
+  padding: 1rem 0 1rem 0;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  background-color: white;
+  color: black;
+  border: 0.3px solid black;
+}
+
+#backToIndexPage:hover,
+#goUpButton:hover {
+  background-color: grey;
+  color: white;
+  border: none;
+}

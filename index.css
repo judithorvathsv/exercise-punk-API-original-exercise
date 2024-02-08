@@ -1,55 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gowun Batang", serif;
+  font-size: 1rem;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#cardSection {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+}
+
+.card {
+  /*   background-color: green; */
+  max-width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0 2rem 0;
+  overflow: hidden;
+}
+
 #beerImage {
-  width: 5%;
+  width: 140px;
+  margin: 0 auto;
+  padding: 1rem 0 2rem 0;
+  object-fit: cover;
+}
+
+.container {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#beerName {
+  font-size: 2rem;
 }
 
 #detailButton {
   cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-top: 1rem;
 }
 
-#beerImageDetailPage {
-  width: 5%;
-}
-
-.ingredients:before {
-  content: "🍺";
-}
-main {
-  position: relative;
-  min-height: calc(100vh - 4rem);
-}
-
-.hidden {
-  display: none;
-}
-
-.pagination-container {
-  width: calc(100% - 2rem);
-  display: flex;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  padding: 1rem 0;
-  justify-content: center;
-}
-
-.pagination-number,
-.pagination-button {
-  font-size: 1.1rem;
-  background-color: transparent;
-  border: none;
-  margin: 0.25rem 0.25rem;
+#randomButton,
+#searchBeerButton,
+#advancedSearchBeerButton {
+  padding: 1rem 0 1rem 0;
+  font-weight: bold;
   cursor: pointer;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 0.2rem;
 }
 
-.pagination-number:hover,
-.pagination-button:not(.disabled):hover {
-  background-color: #fff;
+#randomButton:hover,
+#searchBeerButton:hover,
+#advancedSearchBeerButton:hover {
+  background-color: grey;
+  color: white;
+  border: none;
 }
 
-.pagination-number.active {
-  color: #fff;
-  background-color: #0085b6;
+@media only screen and (max-width: 900px) {
+  #cardSection {
+    margin: 0 auto;
+    height: 100vh;
+  }
+  #beerImage {
+    width: 100px;
+  }
+  #beerName {
+    font-size: 2rem;
+  }
+  .card {
+    height: 80vh;
+  }
 }

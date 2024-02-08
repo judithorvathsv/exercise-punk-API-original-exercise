@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="search.css">
 </head>
 
 <body>
@@ -13,26 +13,23 @@
         <section id="search">
             <form action="">
                 <input type="text">
-                <button type="submit">Search</button>
+                <button type="submit" id="submitButton">Search</button>
             </form>
         </section>
-
-
 
         <section id="searchResult">
             <ul id="paginated-list"></ul>
             <nav class="pagination-container">
-                <button class="pagination-button" id="prev-button">&lt;</button>
-
-                <div id="pagination-numbers"> </div>
-
-                <button class="pagination-button" id="next-button">&gt;</button>
+                <div id="navButtonsDiv">
+                    <button class="pagination-button" id="prev-button">&lt;</button>
+                    <div id="pagination-numbers"> </div>
+                    <button class="pagination-button" id="next-button">&gt;</button>
+                </div>
+                <div id="navigationToOtherPagesDiv">
+                    <button id="advancedSearchButton">Go to advanced search</button>
+                    <button id="backToIndexPage">Back to main page</button>
+                </div>
             </nav>
-        </section>
-
-        <section id="advancedSearch">
-            <button id="advancedSearchButton">Go to advanced search</button>
-            <button id="backToIndexPage">Back to main page</button>
         </section>
     </main>
     <script src="search.js"></script>

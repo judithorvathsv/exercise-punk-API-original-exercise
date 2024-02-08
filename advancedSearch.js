@@ -16,7 +16,7 @@ let pageCount = Math.ceil(listItems.length / paginationLimit)
 let currentPage = 1
 
 let list = []
-document.querySelector('nav').style.display = 'none'
+document.querySelector('#navButtonsDiv').style.display = 'none'
 
 function isEmptyOrSpaces (str) {
   return str === null || str.match(/^ *$/) !== null
@@ -275,9 +275,9 @@ function paginering () {
 
   //---- Show/hide whole navigation bar according to list length ----
   if (list.length > 10) {
-    document.querySelector('nav').style.display = 'flex'
+    document.querySelector('#navButtonsDiv').style.display = 'flex'
   } else {
-    document.querySelector('nav').style.display = 'none'
+    document.querySelector('#navButtonsDiv').style.display = 'none'
   }
 }
 

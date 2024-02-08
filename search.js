@@ -12,7 +12,7 @@ let pageCount = Math.ceil(listItems.length / paginationLimit)
 let currentPage = 1
 
 let list = []
-document.querySelector('nav').style.display = 'none'
+document.querySelector('#navButtonsDiv').style.display = 'none'
 
 //----------------- FORM SUBMIT  ------------------------------
 document.querySelector('form').addEventListener('submit', e => {
@@ -45,6 +45,7 @@ function createLinkListHTML (list) {
     link.innerHTML = item
     link.href = '#'
     let listItem = document.createElement('p')
+    listItem.classList.add('listItemAsP')
     listItem.appendChild(link)
     document.getElementById('paginated-list').appendChild(listItem)
   }
@@ -84,9 +85,9 @@ function paginering () {
 
   //---- Show/hide whole navigation bar according to list length ----
   if (list.length > 10) {
-    document.querySelector('nav').style.display = 'flex'
+    document.querySelector('#navButtonsDiv').style.display = 'flex'
   } else {
-    document.querySelector('nav').style.display = 'none'
+    document.querySelector('#navButtonsDiv').style.display = 'none'
   }
 }
 

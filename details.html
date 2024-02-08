@@ -5,25 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="details.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Tangerine&family=Waterfall&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
-    <main>
+    <main id="main">
         <h1 id="title"></h1>
+
         <h3>Description</h3>
         <p id="description"></p>
-        <img id="beerImageDetailPage" src="" alt="">
+
+        <img id="beerImageDetailPage" src="" alt="beerPicture">
+
         <p id="alcoholVolume"></p>
+
         <p id="volume"></p>
-        <h3>Ingredients</h3>
+
+        <hr id="firstHr">
+
+        <h3 id="ingredientsTitle">Ingredients</h3>
         <ul id="ingredientsUl"></ul>
-        <h3>Food pairing</h3>
-        <ul id="foodPairingUl"></ul>    
+
+        <hr id="secondHr">
+
+        <h3 id="foodPairingTitle">Food pairing</h3>
+        <ul id="foodPairingUl"></ul>
         <h3>Brewers tips</h3>
         <p id="brewersTips"></p>
 
         <button id="backToIndexPage">Back to main page</button>
+        <!--   <button id="goUpButton">Go upp</button> -->
+        <a href="#main" id="goUpButton">
+            <span class="material-symbols-outlined">
+                stat_1
+            </span>
+        </a>
     </main>
     <script src="details.js"></script>
 </body>

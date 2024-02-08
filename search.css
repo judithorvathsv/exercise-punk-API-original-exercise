@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gowun Batang", serif;
+  font-size: 1rem;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+}
+
+#search {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 1rem 0;
+}
+
+input {
+  height: 2rem;
+}
+
+#submitButton {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  color: #fff;
+  background-color: #0085b6;
+}
+
+#searchResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  line-height: 2;
+  color: black;
+}
+
+.listItemAsP:hover {
+  background-color: grey;
+}
+
+.listItemAsP:hover a {
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  padding: 1rem 0;
+  justify-content: center;
+
+  width: 100%;
+}
+
+#navButtonsDiv {
+  display: flex;
+}
+
+.pagination-number,
+.pagination-button {
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: none;
+  margin: 0.25rem 0.25rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.2rem;
+}
+
+.pagination-number:hover,
+.pagination-button:not(.disabled):hover {
+  background-color: #fff;
+}
+
+.pagination-number.active {
+  color: #fff;
+  background-color: #0085b6;
+}
+
+#navigationToOtherPagesDiv {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#advancedSearchButton,
+#backToIndexPage {
+  height: 4rem;
+  padding: 1rem 0 1rem 0;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+#advancedSearchButton:hover,
+#backToIndexPage:hover {
+  background-color: grey;
+  color: white;
+  border: none;
+}
