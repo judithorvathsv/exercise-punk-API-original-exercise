@@ -1,10 +1,8 @@
-let beersArray = []
-
 window.onload = () => {
   //show loader
   document.getElementById('loaderDiv').style.display = 'flex'
 
-  let storedBeers = localStorage.getItem('beersStorage')  
+  let storedBeers = localStorage.getItem('beersStorage')
   if (storedBeers == 'undefined' || storedBeers == null) {
     fetchBeers()
   } else {
@@ -25,7 +23,6 @@ const fetchBeers = () => {
   allBeers()
     .then(function (result) {
       localStorage.setItem('beersStorage', JSON.stringify(result))
-      beersArray.push(result)
       checkHasOneBeerAndGetBeer(result)
     })
     .catch(err => console.log(err))

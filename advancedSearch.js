@@ -1,7 +1,3 @@
-/*  
-- The search form should contain relevant validation.
---> */
-
 let storedBeers = localStorage.getItem('beersStorage')
 let beers = JSON.parse(storedBeers)
 
