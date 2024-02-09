@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Gowun Batang", serif;
   font-size: 1rem;
 }
 
@@ -12,10 +11,15 @@ main {
   margin: 0 auto;
   width: 100%;
   align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background: linear-gradient(to right) 0.7 100%;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5) 0 100%), url("pic10.jpg");
+  background-size: cover;
 }
 
 #title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   padding: 1rem;
 }
 
@@ -29,6 +33,7 @@ h3 {
 
 p {
   max-width: 50vw;
+  font-size: 1.2rem;
 }
 
 #beerImageDetailPage {
@@ -263,12 +268,25 @@ hr:nth-child(even):before {
   }
 }
 
+#ingredientsTitle #foodPairingTitle {
+  padding-top: 2rem;
+}
+
+li {
+  font-size: 1.1rem;
+}
+
+.ingredients {
+  font-size: 1.2rem;
+  padding-top: 1rem;
+}
+
 .ingredients:before {
   content: "🍺";
 }
 
-#ingredientsTitle #foodPairingTitle {
-  padding-top: 2rem;
+span {
+  font-size: 1.2rem;
 }
 
 #ingredientsUl,
@@ -280,6 +298,7 @@ hr:nth-child(even):before {
 
 #goUpButton {
   text-align: center;
+  padding: -0.5rem;
 }
 
 #backToIndexPage,
@@ -299,4 +318,10 @@ hr:nth-child(even):before {
   background-color: grey;
   color: white;
   border: none;
+}
+
+@media only screen and (max-width: 400px) {
+  li {
+    margin-left: 1rem;
+  }
 }

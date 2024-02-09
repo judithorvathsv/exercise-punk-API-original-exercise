@@ -236,6 +236,7 @@ function createLinkListHTML (list) {
     link.innerHTML = item
     link.href = '#'
     let listItem = document.createElement('p')
+    listItem.classList.add('listItemAsP')
     listItem.appendChild(link)
     document.getElementById('paginated-list').appendChild(listItem)
   }

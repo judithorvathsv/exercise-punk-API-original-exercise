@@ -58,11 +58,14 @@ function showBeer () {
       li.innerHTML = item.replace(/\s/g, '&nbsp;')
       li.style.listStyleType = 'none'
       document.getElementById('ingredientsUl').appendChild(li)
+    li.classList.add('ingredientsDetails')
+
 
       if (item[0] !== ' ') {
         li.style.listStyleType = 'none'
         li.style.fontWeight = 'bold'
         li.classList.add('ingredients')
+
       }
     }
   }
