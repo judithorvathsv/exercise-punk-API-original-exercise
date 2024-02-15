@@ -1,6 +1,3 @@
-let storedBeers = localStorage.getItem('beersStorage')
-let beers = JSON.parse(storedBeers)
-
 let paginatedList = document.getElementById('paginated-list')
 let listItems = paginatedList.querySelectorAll('p')
 let nextButton = document.getElementById('next-button')
@@ -14,26 +11,60 @@ let currentPage = 1
 let list = []
 document.querySelector('#navButtonsDiv').style.display = 'none'
 
-//----------------- FORM SUBMIT  ------------------------------
-document.querySelector('form').addEventListener('submit', e => {
-  e.preventDefault()
-  let searchedName = ''
-  list = []
+let beers = []
 
-  searchedName = document.querySelector('input').value
+//fetching beers function
+const fetchBeersFromApiByName = async searchedBeerName => {
+  const getBeersByNameFromAPI = async () => {
+    const url = `https://api.punkapi.com/v2/beers?beer_name=${searchedBeerName}`
+    const response = await fetch(url)
+    return await response.json()
+  }
+  await getBeersByNameFromAPI().then(function (beersFromApi) {
+    console.log('beent', beersFromApi)
+    beers.push(beersFromApi)
+    return beers
+  })
+}
+
+//----------------- FORM SUBMIT  ------------------------------
+document.querySelector('form').addEventListener('submit', async e => {
+  e.preventDefault()
+  let serachedBeersList = []
+  beers = []
+  let searchedBeerName = document.querySelector('input').value
+
+  const getBeersByNameFromAPI = async () => {
+    try {
+      const url = `https://api.punkapi.com/v2/beers?beer_name=${searchedBeerName}`
+      const response = await fetch(url)
+      return await response.json()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  let getBeersInArray = async () => {
+    await getBeersByNameFromAPI().then(beersFromApi => {
+      beers = beers.concat(beersFromApi)
+      console.log(beers, 'beersapi')
+      return beers
+    })
+  }
+
+  await getBeersInArray().then(beers => beers)
+
   beers.map(beer => {
     for (let key in beer) {
-      if (
-        key == 'name' &&
-        beer[key].toLowerCase().includes(searchedName.toLowerCase())
-      ) {
-        list.push(beer.name)
+      if (key == 'name') {
+        serachedBeersList.push(beer.name)
       }
     }
   })
 
   paginatedList.innerHTML = ''
-  createLinkListHTML(list)
+  createLinkListHTML(serachedBeersList)
+  localStorage.setItem('searchedBeersStorage', JSON.stringify(beers))
 })
 
 //----------------- CREATE LINKS AS HTML  ------------------------------
@@ -162,8 +193,15 @@ const setCurrentPage = pageNum => {
 //----------------- GO TO DETAILS.HTML  ------------------------------
 document.querySelector('ul').addEventListener('click', e => {
   if (e.target.innerText !== null) {
-    let searchedBeer = beers.find(b => b.name == e.target.innerText)
-    localStorage.setItem('beerId', searchedBeer.id)
+    let searchedBeersFromStorage = JSON.parse(
+      localStorage.getItem('searchedBeersStorage')
+    )
+
+    let searchedBeer = searchedBeersFromStorage.find(
+      b => b.name == e.target.innerText
+    )
+
+    localStorage.setItem('searchedBeerId', searchedBeer.id)
     window.location = 'details.html'
   }
 })

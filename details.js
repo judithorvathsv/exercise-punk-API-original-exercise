@@ -9,11 +9,11 @@ window.onload = () => {
 }
 
 function showBeer () {
-  let storedBeers = localStorage.getItem('beersStorage')
-  let beers = JSON.parse(storedBeers)
-  let beerId = localStorage.getItem('beerId')
+  let storedSearchedBeers = localStorage.getItem('searchedBeersStorage')
+  let storedSearchedBeersArray = JSON.parse(storedSearchedBeers)
+  let beerId = localStorage.getItem('searchedBeerId')
 
-  let beer = beers.find(b => b.id == beerId)
+  let beer = storedSearchedBeersArray.find(b => b.id == beerId)
 
   document.getElementById('title').innerText = beer.name
   document.getElementById('description').innerText = beer.description
@@ -58,14 +58,12 @@ function showBeer () {
       li.innerHTML = item.replace(/\s/g, '&nbsp;')
       li.style.listStyleType = 'none'
       document.getElementById('ingredientsUl').appendChild(li)
-    li.classList.add('ingredientsDetails')
-
+      li.classList.add('ingredientsDetails')
 
       if (item[0] !== ' ') {
         li.style.listStyleType = 'none'
         li.style.fontWeight = 'bold'
         li.classList.add('ingredients')
-
       }
     }
   }

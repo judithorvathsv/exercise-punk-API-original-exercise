@@ -1,62 +1,59 @@
-window.onload = () => {
-  //show loader
-  document.getElementById('loaderDiv').style.display = 'flex'
-
-  let storedBeers = localStorage.getItem('beersStorage')
-  if (storedBeers == 'undefined' || storedBeers == null) {
-    fetchBeers()
-  } else {
-    let beers = JSON.parse(storedBeers)
-    checkHasOneBeerAndGetBeer(beers)
-  }
-}
-
-const fetchBeers = () => {
-  const allBeers = async () => {
+const fetchRandomBeerFromApi = () => {
+  const getRandomBeerFromAPI = async () => {
     try {
-      const response = await fetch('https://api.punkapi.com/v2/beers/')
+      const response = await fetch('https://api.punkapi.com/v2/beers/random')
       return await response.json()
     } catch (err) {
       console.log(err)
     }
   }
-  allBeers()
-    .then(function (result) {
-      localStorage.setItem('beersStorage', JSON.stringify(result))
-      checkHasOneBeerAndGetBeer(result)
+  getRandomBeerFromAPI()
+    .then(function (beer) {
+      localStorage.setItem('randomBeerSorage', JSON.stringify(beer))
+      showBeer(beer)
     })
     .catch(err => console.log(err))
 }
 
-function getBeer (beers) {
-  if (beers == null) beers = JSON.parse(localStorage.getItem('beersStorage'))
-  let randomId = Math.floor(Math.random() * 25 + 1)
-  let randomBeer = beers.find(b => b.id == randomId)
-  document.getElementById('beerImage').src = randomBeer.image_url
-  document.getElementById('beerName').innerText = randomBeer.name
-  localStorage.setItem('beerId', randomBeer.id)
+function showBeer (randomBeer) {
+  if (randomBeer[0].image_url !== null) {
+    document.getElementById('beerImage').src = randomBeer[0].image_url
+  }
+
+  document.getElementById('beerName').innerText = randomBeer[0].name
+}
+
+const fetchBeerFromApiAndShow = async () => {
+  //show loader
+  document.getElementById('loaderDiv').style.display = 'flex'
+  document.getElementById('card').style.opacity = 0
+
+  let storedRandomBeer = localStorage.getItem('randomBeerSorage')
+
+  if (storedRandomBeer == 'undefined' || storedRandomBeer == null) {
+    fetchRandomBeerFromApi()
+  } else {
+    let previousSelectedBeer = window.localStorage.getItem('randomBeerSorage')
+    let randomBeer = JSON.parse(previousSelectedBeer)
+    showBeer(randomBeer)
+  }
   //hide loader
   document.getElementById('loaderDiv').style.display = 'none'
   document.getElementById('card').style.opacity = 1
 }
 
-async function checkHasOneBeerAndGetBeer (beers) {
-  let beerId = localStorage.getItem('beerId')
-  if (typeof beerId == 'undefined' || beerId == null) {
-    getBeer(beers)
-  } else {
-    let randomBeer = beers.find(b => b.id == beerId)
-    document.getElementById('beerImage').src = randomBeer.image_url
-    document.getElementById('beerName').innerText = randomBeer.name
-    //hide loader
-    document.getElementById('loaderDiv').style.display = 'none'
-    document.getElementById('card').style.opacity = 1
-  }
+window.onload = () => {
+  fetchBeerFromApiAndShow()
+}
+
+function setNewRandomBeer () {
+  localStorage.removeItem('randomBeerSorage')
+  fetchBeerFromApiAndShow()
 }
 
 document
   .getElementById('randomButton')
-  .addEventListener('click', () => getBeer())
+  .addEventListener('click', () => setNewRandomBeer())
 
 document
   .getElementById('detailButton')
