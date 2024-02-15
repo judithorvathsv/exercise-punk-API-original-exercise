@@ -1,6 +1,3 @@
-let storedBeers = localStorage.getItem('beersStorage')
-let beers = JSON.parse(storedBeers)
-
 let paginatedList = document.getElementById('paginated-list')
 let listItems = paginatedList.querySelectorAll('p')
 let nextButton = document.getElementById('next-button')
@@ -12,22 +9,15 @@ let pageCount = Math.ceil(listItems.length / paginationLimit)
 let currentPage = 1
 
 let list = []
+let beers = []
+
 document.querySelector('#navButtonsDiv').style.display = 'none'
-
-/* 
-
-function getDateFormat (date) {
-  return new Date(date.substring(3, 7), date.substring(0, 2), '01')
-}
-
-*/
 
 function getDateFormat (date) {
   return date.substring(5, 7) + '-' + date.substring(0, 4)
 }
 
 //----------------- FORM SUBMIT  ------------------------------
-
 document.querySelector('form').addEventListener('submit', async e => {
   e.preventDefault()
   let parametersArray = []
