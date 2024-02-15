@@ -46,8 +46,7 @@ document.querySelector('form').addEventListener('submit', async e => {
 
   let getBeersInArray = async () => {
     await getBeersByNameFromAPI().then(beersFromApi => {
-      beers = beers.concat(beersFromApi)
-      console.log(beers, 'beersapi')
+      beers = beers.concat(beersFromApi)   
       return beers
     })
   }

@@ -14,213 +14,85 @@ let currentPage = 1
 let list = []
 document.querySelector('#navButtonsDiv').style.display = 'none'
 
-function isEmptyOrSpaces (str) {
-  return str === null || str.match(/^ *$/) !== null
-}
-
-let minDate = beers.reduce((a, b) =>
-  getDateFormat(a.first_brewed) < getDateFormat(b.first_brewed) ? a : b
-)
+/* 
 
 function getDateFormat (date) {
   return new Date(date.substring(3, 7), date.substring(0, 2), '01')
 }
 
-let maxAbv = beers.reduce((a, b) => (a.abv > b.abv ? a : b))
+*/
 
-function onlyUnique (value, index, array) {
-  return array.indexOf(value) === index
+function getDateFormat (date) {
+  return date.substring(5, 7) + '-' + date.substring(0, 4)
 }
 
 //----------------- FORM SUBMIT  ------------------------------
 
-document.querySelector('form').addEventListener('submit', e => {
+document.querySelector('form').addEventListener('submit', async e => {
   e.preventDefault()
+  let parametersArray = []
+  let searchedBeersList = []
+  beers = []
 
   //inputs
-  let searchedName = ''
-  searchedName = document.querySelector('#name').value
-  let searchedHops = ''
-  searchedHops = document.querySelector('#hops').value
-  let searchedMalt = ''
-  searchedMalt = document.querySelector('#malt').value
+  let searchedName = document.querySelector('#name').value
+  let searchedHops = document.querySelector('#hops').value
+  let searchedMalt = document.querySelector('#malt').value
 
-  let searchedBrewerDateFrom = minDate.first_brewed
-  searchedBrewerDateFrom = document.querySelector('#brewersFrom').value
-  let searchedBrewerDateFromAsDate = new Date(searchedBrewerDateFrom)
+  let searchedBrewerDateFrom = document.querySelector('#brewersFrom').value
+  let searchedBrewerDateFromAsDate = getDateFormat(searchedBrewerDateFrom)
 
-  let searchedBrewerDateTo = new Date()
-  searchedBrewerDateTo = document.querySelector('#brewersTo').value
-  let searchedBrewerDateToAsDate = new Date(searchedBrewerDateTo)
+  let searchedBrewerDateTo = document.querySelector('#brewersTo').value
+  let searchedBrewerDateToAsDate = getDateFormat(searchedBrewerDateTo)
 
-  let searchedMinAbv = 0
-  searchedMinAbv = document.querySelector('#abvGreaterThan').value
-  let searchedMaxAbv = maxAbv
-  searchedMaxAbv = document.querySelector('#abvLessThan').value
+  let searchedMinAbv = document.querySelector('#abvGreaterThan').value
+  let searchedMaxAbv = document.querySelector('#abvLessThan').value
 
-  //lists
-  let nameList = []
-  let hopsList = []
-  let maltList = []
-  let brewFromList = []
-  let brewToList = []
-  let abvFromList = []
-  let abvToList = []
+  if (searchedName !== '') parametersArray.push(`beer_name=${searchedName}`)
+  if (searchedHops !== '') parametersArray.push(`hops=${searchedHops}`)
+  if (searchedMalt !== '') parametersArray.push(`malt=${searchedMalt}`)
 
-  //get all searched item in its list:
-  if (!isEmptyOrSpaces(searchedName)) {
-    beers.map(beer => {
-      for (let key in beer) {
-        if (
-          key == 'name' &&
-          beer[key].toLowerCase().includes(searchedName.toLowerCase())
-        ) {
-          nameList.push(beer.name)
-        }
-      }
-    })
-  }
+  if (searchedBrewerDateFrom !== '')
+    parametersArray.push(`brewed_after=${searchedBrewerDateFromAsDate}`)
+  if (searchedBrewerDateTo !== '')
+    parametersArray.push(`brewed_before=${searchedBrewerDateToAsDate}`)
 
-  if (!isEmptyOrSpaces(searchedHops)) {
-    beers.map(beer => {
-      for (let key in beer) {
-        if (key == 'ingredients') {
-          for (let hop in beer[key].hops) {
-            if (
-              beer[key].hops[hop].name
-                .toLowerCase()
-                .includes(searchedHops.toLowerCase())
-            ) {
-              hopsList.push(beer.name)
-            }
-          }
-        }
-      }
-    })
-  }
+  if (searchedMinAbv !== '') parametersArray.push(`abv_gt=${searchedMinAbv}`)
+  if (searchedMaxAbv !== '') parametersArray.push(`abv_lt=${searchedMaxAbv}`)
 
-  if (!isEmptyOrSpaces(searchedMalt)) {
-    beers.map(beer => {
-      for (let key in beer) {
-        if (key == 'ingredients') {
-          for (let m in beer[key].malt) {
-            if (
-              beer[key].malt[m].name
-                .toLowerCase()
-                .includes(searchedMalt.toLowerCase())
-            ) {
-              maltList.push(beer.name)
-            }
-          }
-        }
-      }
-    })
-  }
+  let baseUrl = 'https://api.punkapi.com/v2/beers?'
+  let urlParameters = parametersArray.join('&')
 
-  if (!isEmptyOrSpaces(searchedBrewerDateFrom)) {
-    beers.map(beer => {
-      for (let key in beer) {
-        if (key == 'first_brewed') {
-          let brewDate = new Date(
-            beer[key].substring(3, 7),
-            beer[key].substring(0, 2),
-            '01'
-          )
-          if (brewDate >= searchedBrewerDateFromAsDate) {
-            brewFromList.push(beer.name)
-          }
-        }
-      }
-    })
-  }
-
-  if (!isEmptyOrSpaces(searchedBrewerDateTo)) {
-    beers.map(beer => {
-      for (let key in beer) {
-        if (key == 'first_brewed') {
-          let brewDate = new Date(
-            beer[key].substring(3, 7),
-            beer[key].substring(0, 2),
-            '01'
-          )
-          if (brewDate < searchedBrewerDateToAsDate) {
-            brewToList.push(beer.name)
-          }
-        }
-      }
-    })
-  }
-
-  if (!isEmptyOrSpaces(searchedMinAbv)) {
-    beers.map(beer => {
-      for (let key in beer) {
-        if (key == 'abv' && beer[key] > searchedMinAbv) {
-          abvFromList.push(beer.name)
-        }
-      }
-    })
-  }
-  if (!isEmptyOrSpaces(searchedMaxAbv)) {
-    beers.map(beer => {
-      for (let key in beer) {
-        if (key == 'abv' && beer[key] < searchedMaxAbv) {
-          abvToList.push(beer.name)
-        }
-      }
-    })
-  }
-
-  //intersecion
-  const intersection = (arr1, arr2) => {
-    const res = []
-    for (let i = 0; i < arr1.length; i++) {
-      if (!arr2.includes(arr1[i])) {
-        continue
-      }
-      res.push(arr1[i])
+  const getSearchedBeersFromAPI = async () => {
+    try {
+      const url = `${baseUrl}${urlParameters}`
+      const response = await fetch(url)
+      return await response.json()
+    } catch (err) {
+      console.log(err)
     }
-    return res
   }
 
-  const intersectMany = (...arrs) => {
-    let res = arrs[0].slice()
-    for (let i = 1; i < arrs.length; i++) {
-      res = intersection(res, arrs[i])
+  let getBeersArrayFromSearchedBeersFromAPI = async () => {
+    await getSearchedBeersFromAPI().then(beersFromApi => {
+      beers = beers.concat(beersFromApi)
+      return beers
+    })
+  }
+
+  await getBeersArrayFromSearchedBeersFromAPI().then(beers => beers)
+
+  beers.map(beer => {
+    for (let key in beer) {
+      if (key == 'name') {
+        searchedBeersList.push(beer.name)
+      }
     }
-    return res
-  }
-
-  let allSearchedList = []
-
-  if (nameList.length > 0) allSearchedList.push(nameList)
-  if (hopsList.length > 0) allSearchedList.push(hopsList)
-  if (maltList.length > 0) allSearchedList.push(maltList)
-  if (brewFromList.length > 0) allSearchedList.push(brewFromList)
-  if (brewToList.length > 0) allSearchedList.push(brewToList)
-  if (abvFromList.length > 0) allSearchedList.push(abvFromList)
-  if (abvToList.length > 0) allSearchedList.push(abvToList)
-
-  //check if there is no match:
-  if (
-    (nameList.length == 0 && searchedName !== '') ||
-    (hopsList.length == 0 && searchedHops !== '') ||
-    (maltList.length == 0 && searchedMalt !== '') ||
-    (brewFromList.length == 0 && searchedBrewerDateFrom !== '') ||
-    (brewToList.length == 0 && searchedBrewerDateTo !== '') ||
-    (abvFromList.length == 0 && searchedMinAbv !== '') ||
-    (abvToList.length == 0 && searchedMaxAbv !== '')
-  ) {
-    allSearchedList = []
-  }
-
-  list = []
-
-  if (allSearchedList.length > 0) {
-    list = intersectMany(...allSearchedList)
-  }
+  })
 
   paginatedList.innerHTML = ''
-  createLinkListHTML(list)
+  createLinkListHTML(searchedBeersList)
+  localStorage.setItem('searchedBeersStorage', JSON.stringify(beers))
 })
 
 //----------------- CREATE LINKS AS HTML  ------------------------------
@@ -349,8 +221,15 @@ const setCurrentPage = pageNum => {
 //----------------- GO TO DETAILS.HTML  ------------------------------
 document.querySelector('ul').addEventListener('click', e => {
   if (e.target.innerText !== null) {
-    let searchedBeer = beers.find(b => b.name == e.target.innerText)
-    localStorage.setItem('beerId', searchedBeer.id)
+    let searchedBeersFromStorage = JSON.parse(
+      localStorage.getItem('searchedBeersStorage')
+    )
+
+    let searchedBeer = searchedBeersFromStorage.find(
+      b => b.name == e.target.innerText
+    )
+
+    localStorage.setItem('searchedBeerId', searchedBeer.id)
     window.location = 'details.html'
   }
 })
